@@ -1,0 +1,95 @@
+﻿<template>
+    <div class="row">
+        <div class="col-xs-6 col-md-4">
+            
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation" class="active"><a data-toggle="tab" href="#enterData">Enter Data</a></li>
+                <li role="presentation"><a data-toggle="tab" href="#importDataset">Import Dataset</a></li>
+            </ul>
+            
+            <div class="tab-content">
+                <div id="enterData" class="tab-pane fade in active">
+                    <hr/>
+                    <div class="form-group">
+                        <label for="item">Item</label>
+                        <input type="text" class="form-control" id="item" placeholder="Name" value.bind="item">
+                    </div>
+                    <button class="btn btn-default" click.trigger="addItem()">Add Item</button>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Items</th>
+                            <th>Remove</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr repeat.for="itm of items">
+                            <td>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" model.bind="itm" value="${itm.name}" checked.bind="$parent.selectedOptions"> ${itm.name}
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-default" click.trigger="deleteItem(itm.name)">Delete</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-default" click.trigger="addTransaction()">Add Transaction</button>
+                </div>
+                <div id="importDataset" class="tab-pane fade">
+                    <hr />
+                    <input type="file" accept=".csv" files.bind="selectedFile">
+                    <button class="btn btn-default" click.trigger="importDataset()">Import</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-6 col-md-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Transactions</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr repeat.for="transaction of transactions">
+                        <td>
+                            ${transaction.name}
+                        </td>
+                        <td>
+                            <button class="btn btn-default" click.trigger="deleteTransaction(transaction.name)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-default" click.trigger="clearAllTransactions()">Clear All Transactions</button>
+        </div>
+        <div class="col-xs-6 col-md-4">
+            <form>
+                <div class="form-group">
+                    <label for="minSupport">min.Support</label>
+                    <input type="number" class="form-control" id="minSupport" placeholder="Support" value.bind="minSupport">
+                </div>
+                <div class="form-group">
+                    <label for="minConfidence">min.Confidence</label>
+                    <input type="number" class="form-control" id="minConfidence" placeholder="Confidence" value.bind="minConfidence">
+                </div>
+                <button class="btn btn-default" click.trigger="proccessTransactions()">Proccess Transactions</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <hr/>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Resault:</h1>
+                <pre>${resault}</pre>
+            </div>
+        </div>
+    </div>
+</template>

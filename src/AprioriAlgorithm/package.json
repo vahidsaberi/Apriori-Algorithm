@@ -1,0 +1,18 @@
+{
+  "jspm": {
+    "directories": {
+      "baseURL": "wwwroot"
+    },
+    "dependencies": {
+      "aurelia-bootstrapper": "npm:aurelia-bootstrapper@^1.0.1",
+      "aurelia-framework": "npm:aurelia-framework@^1.0.7",
+      "bluebird": "npm:bluebird@^3.4.6",
+      "csvto": "github:mholt/PapaParse@^4.1.2"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
+  }
+}
